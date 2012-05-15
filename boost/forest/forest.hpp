@@ -11,8 +11,8 @@
 
 /*************************************************************************************************/
 
-#include <adobe/algorithm/reverse.hpp>
-#include <adobe/iterator/set_next.hpp>
+#include <boost/forest/detail/algorithm/reverse.hpp>
+#include <boost/forest/detail/iterator/set_next.hpp>
 
 #include <boost/iterator/iterator_facade.hpp>
 #include <boost/next_prior.hpp>
@@ -24,7 +24,8 @@
 
 /*************************************************************************************************/
 
-namespace adobe {
+namespace boost {
+namespace forest {
     
 /*************************************************************************************************/
 
@@ -1220,7 +1221,8 @@ inline std::pair<edge_iterator<typename boost::range_const_iterator<R>::type, fo
 
 /*************************************************************************************************/
     
-} // namespace adobe
+} // namespace forest
+} // namespace boost
 
 /*************************************************************************************************/
 

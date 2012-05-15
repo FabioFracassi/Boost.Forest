@@ -12,9 +12,11 @@
 
 /*************************************************************************************************/
 
-namespace adobe {
+namespace boost {
 
-namespace unsafe {
+namespace forest {
+
+namespace detail {
 
 /*! \addtogroup adobe_iterator
 @{
@@ -73,8 +75,8 @@ inline void skip_node(I location)
 
 /*************************************************************************************************/
 
-} // namespace unsafe
-
+} // namespace detail
+} // namespace forest
 } // namespace adobe
 
 /*************************************************************************************************/
