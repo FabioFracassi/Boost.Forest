@@ -8,8 +8,6 @@
 #ifndef ADOBE_ITERATOR_SET_NEXT_HPP
 #define ADOBE_ITERATOR_SET_NEXT_HPP
 
-#include <adobe/config.hpp>
-
 #include <boost/next_prior.hpp>
 
 /*************************************************************************************************/

@@ -11,8 +11,6 @@
 
 /*************************************************************************************************/
 
-#include <adobe/config.hpp>
-
 #include <adobe/algorithm/reverse.hpp>
 #include <adobe/iterator/set_next.hpp>
 
