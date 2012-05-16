@@ -1,0 +1,15 @@
+# Establish common build settings across all .../adobe/test projects 
+# above and beyond those established for all .../adobe projects 
+
+import modules ;
+
+local boost = [ modules.peek : BOOST ] ;
+
+project forest : requirements <include>$(boost) <include>. ;
+
+# This seems to prevent some Boost.Build errors that otherwise occur :-(
+use-project /boost : $(boost) ;
+
+
+build-project forest ;
+
