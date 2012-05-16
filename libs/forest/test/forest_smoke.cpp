@@ -3,7 +3,7 @@
 #include <new>
 #include <cassert>
 
-#include <adobe/algorithm.hpp> // Todo: Remove and use  boost equivalent
+#include <adobe/algorithm/find.hpp> // Todo: Remove and use  boost equivalent
 #include <boost/forest/forest.hpp>
 #include <boost/range.hpp>
 
@@ -18,7 +18,7 @@ void output(const R& f)
         {
             std::cout << "\t";
         }
-        if (first.edge() == adobe::forest_leading_edge)
+        if (first.edge() == boost::forest::forest_leading_edge)
         {
             std::cout << "<" << *first << ">" << std::endl;
         }
@@ -37,46 +37,46 @@ int main()
     std::cout << "<- default construction and insert ->" << std::endl;
     forest f;
     iterator i (f.begin());
-    i = adobe::trailing_of(f.insert(i, "grandmother"));
+    i = boost::forest::trailing_of(f.insert(i, "grandmother"));
     {
-        iterator p (adobe::trailing_of(f.insert(i, "mother")));
+        iterator p (boost::forest::trailing_of(f.insert(i, "mother")));
         f.insert(p, "me");
         f.insert(p, "sister");
         f.insert(p, "brother");
     }
     {
-        iterator p (adobe::trailing_of(f.insert(i, "aunt")));
+        iterator p (boost::forest::trailing_of(f.insert(i, "aunt")));
         f.insert(p, "cousin");
     }
     f.insert(i, "uncle");
     
-    output(adobe::depth_range(f));
+    output(boost::forest::depth_range(f));
     std::cout << "<- copy construction and reverse ->" << std::endl;
     
     forest f2(f);
-    iterator f2_grandmother(adobe::find(adobe::preorder_range(f2), "grandmother").base());
-    f2.reverse(adobe::child_begin(f2_grandmother), adobe::child_end(f2_grandmother));
+    iterator f2_grandmother(adobe::find(boost::forest::preorder_range(f2), "grandmother").base());
+    f2.reverse(boost::forest::child_begin(f2_grandmother), boost::forest::child_end(f2_grandmother));
     
-    output(adobe::depth_range(f2));
+    output(boost::forest::depth_range(f2));
     
     std::cout << "<- reverse iterator ->" << std::endl;
     
-    output(adobe::depth_range(adobe::reverse_fullorder_range(f)));
+    output(boost::forest::depth_range(boost::forest::reverse_fullorder_range(f)));
 
     std::cout << "<- node deletion ->" << std::endl;
     
     forest f3(f);
-    iterator f3_aunt(adobe::find(adobe::preorder_range(f3), "aunt").base());
-    iterator f3_uncle(adobe::find(adobe::preorder_range(f3), "uncle").base());
-    f3.erase(adobe::leading_of(f3_aunt), ++(adobe::trailing_of(f3_uncle)));
+    iterator f3_aunt(adobe::find(boost::forest::preorder_range(f3), "aunt").base());
+    iterator f3_uncle(adobe::find(boost::forest::preorder_range(f3), "uncle").base());
+    f3.erase(boost::forest::leading_of(f3_aunt), ++(boost::forest::trailing_of(f3_uncle)));
 
-    output(adobe::depth_range(f3));
+    output(boost::forest::depth_range(f3));
 
     std::cout << "<- splicing 1 ->" << std::endl;
 
     forest f4(f);
     forest f5(f);
-    iterator f4_aunt(adobe::find(adobe::preorder_range(f4), "aunt").base());
+    iterator f4_aunt(adobe::find(boost::forest::preorder_range(f4), "aunt").base());
 
     std::cout << "Size of f4 pre-splice: " << static_cast<unsigned long>(f4.size()) << std::endl;
     std::cout << "Size of f5 pre-splice: " << static_cast<unsigned long>(f5.size()) << std::endl;
@@ -86,7 +86,7 @@ int main()
 
     f4.splice(f4_aunt, f5);    
 
-    output(adobe::depth_range(f4));
+    output(boost::forest::depth_range(f4));
 
     std::cout << "Size of f4 post-splice: " << static_cast<unsigned long>(f4.size()) << std::endl;
     std::cout << "Size of f5 post-splice: " << static_cast<unsigned long>(f5.size()) << std::endl;
@@ -95,19 +95,19 @@ int main()
 
     forest f6(f);
     forest f7(f);
-    iterator f6_aunt(adobe::find(adobe::preorder_range(f6), "aunt").base());
+    iterator f6_aunt(adobe::find(boost::forest::preorder_range(f6), "aunt").base());
 
     std::cout << "Size of f6 pre-splice: " << static_cast<unsigned long>(f6.size()) << std::endl;
     std::cout << "Size of f7 pre-splice: " << static_cast<unsigned long>(f7.size()) << std::endl;
 
-    f6_aunt = adobe::trailing_of(f6_aunt);
+    f6_aunt = boost::forest::trailing_of(f6_aunt);
 
     // Note that because f6_aunt is on the trailing edge, the spliced forest's
     // top nodes will be children to f6_aunt.
 
     f6.splice(f6_aunt, f7);    
 
-    output(adobe::depth_range(f6));
+    output(boost::forest::depth_range(f6));
 
     std::cout << "Size of f6 post-splice: " << static_cast<unsigned long>(f6.size()) << std::endl;
     std::cout << "Size of f7 post-splice: " << static_cast<unsigned long>(f7.size()) << std::endl;
