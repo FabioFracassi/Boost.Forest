@@ -17,8 +17,8 @@
 #include <helper/check_traversable.hpp>
 
 
-namespace adobe {
-
+namespace boost {
+namespace forest {
 
 BOOST_AUTO_TEST_CASE(forest_int_traversable_test) {
     forest<int> f;
@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(forest_int_traversable_test) {
 	f.push_back(3);
 	f.push_back(42);
      
-    check_traversable(f);
+   test::check_traversable(f);
 }
 
 
@@ -52,5 +52,5 @@ BOOST_AUTO_TEST_CASE(forest_int_iterator_test) {
 
 }
 
-
+}
 }
