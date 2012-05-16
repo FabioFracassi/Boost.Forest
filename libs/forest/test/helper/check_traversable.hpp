@@ -99,4 +99,7 @@ BOOST_TEST_CASE_TEMPLATE_FUNCTION(check_traversables, T)
 #endif
 
 }
+}
+}
+
 
