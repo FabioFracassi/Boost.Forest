@@ -1,5 +1,7 @@
 import testing ;
 
+project forest_tests : requirements <include>$(boost) <include>. ;
+
 run forest_test.cpp /boost//unit_test_framework ;
 run forest_smoke.cpp /boost//unit_test_framework ;
 
