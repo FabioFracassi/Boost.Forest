@@ -47,7 +47,7 @@ I reverse_append(I first, I last, I result)
     {
         I prior(first);
         ++first;
-        adobe::unsafe::set_next(prior, result);
+        boost::forest::detail::set_next(prior, result);
         result = prior;
     }
     return result;
@@ -60,7 +60,7 @@ template <typename R, // R models NodeRange
           typename I> // I models NodeIterator
 inline I reverse_append(R& range, I result)
 {
-    return adobe::unsafe::reverse_append(boost::begin(range), boost::end(range), result);
+    return boost::forest::detail::reverse_append(boost::begin(range), boost::end(range), result);
 }
 
 /*!
@@ -69,7 +69,7 @@ inline I reverse_append(R& range, I result)
 template <typename I> // I models NodeIterator
 inline I reverse_nodes(I first, I last)
 {
-    return adobe::unsafe::reverse_append(first, last, last);
+    return boost::forest::detail::reverse_append(first, last, last);
 }
 
 /*!
@@ -78,7 +78,7 @@ inline I reverse_nodes(I first, I last)
 template <typename R> // R models NodeRange
 inline typename boost::range_iterator<R>::type reverse_nodes(R& range)
 {
-    return adobe::unsafe::reverse_nodes(boost::begin(range), boost::end(range));
+    return boost::forest::detail::reverse_nodes(boost::begin(range), boost::end(range));
 }
 
 /*************************************************************************************************/

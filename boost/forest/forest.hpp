@@ -403,11 +403,11 @@ public:
     bool equal_node(forest_iterator const& y) const { return node_m == y.node_m; }
 
 private:
-    friend class adobe::forest<value_type>;
+    friend class boost::forest::forest<value_type>;
     friend class boost::iterator_core_access;
     template <typename> friend class forest_iterator;
     template <typename> friend class forest_const_iterator;
-    friend struct unsafe::set_next_fn<forest_iterator>;
+    friend struct detail::set_next_fn<forest_iterator>;
 
     typedef node<T> node_t;
 
@@ -473,10 +473,10 @@ public:
     bool equal_node(forest_const_iterator const& y) const { return node_m == y.node_m; }
 
 private:
-    friend class adobe::forest<value_type>;
+    friend class boost::forest::forest<value_type>;
     friend class boost::iterator_core_access;
     template <typename> friend class forest_const_iterator;
-    friend struct unsafe::set_next_fn<forest_const_iterator>;
+    friend struct detail::set_next_fn<forest_const_iterator>;
 
     typedef const node<T> node_t;
 
@@ -520,7 +520,7 @@ private:
 
 /*************************************************************************************************/
 
-namespace unsafe {
+namespace detail {
 
 template <typename T> // T is node<T>
 struct set_next_fn<implementation::forest_iterator<T> >
@@ -534,7 +534,7 @@ struct set_next_fn<implementation::forest_iterator<T> >
     }
 };
 
-} // namespace unsafe
+} // namespace detail
 
 /*************************************************************************************************/
 
@@ -558,12 +558,12 @@ public:
     typedef reverse_fullorder_iterator<iterator>          reverse_iterator;
     typedef reverse_fullorder_iterator<const_iterator>    const_reverse_iterator;
 
-    typedef adobe::child_iterator<iterator>                    child_iterator;
+    typedef boost::forest::child_iterator<iterator>                    child_iterator;
 /* qualification needed since: A name N used in a class S shall refer to the same declaration
    in its context and when re-evaluated in the completed scope of
    S. */
 
-    typedef adobe::child_iterator<const_iterator>       const_child_iterator;
+    typedef boost::forest::child_iterator<const_iterator>       const_child_iterator;
     typedef std::reverse_iterator<child_iterator>       reverse_child_iterator;
     
     typedef edge_iterator<iterator, forest_leading_edge>        preorder_iterator;
@@ -621,8 +621,8 @@ public:
 
         if (size_valid()) ++size_m;
         
-        unsafe::set_next(boost::prior(position), result);
-        unsafe::set_next(boost::next(result), position);
+        detail::set_next(boost::prior(position), result);
+        detail::set_next(boost::next(result), position);
                 
         return result;
     }
@@ -647,7 +647,7 @@ private:
 
     friend class implementation::forest_iterator<value_type>;
     friend class implementation::forest_const_iterator<value_type>;
-    friend struct unsafe::set_next_fn<iterator>;
+    friend struct detail::set_next_fn<iterator>;
 
 
 #if 0
@@ -720,18 +720,18 @@ bool operator!=(const forest<T>& x, const forest<T>& y)
 
 /*************************************************************************************************/
 
-namespace unsafe {
+namespace detail {
 
 template <typename I> // I models a FullorderIterator
 struct set_next_fn<child_iterator<I> >
 {
     void operator()(child_iterator<I> x, child_iterator<I> y)
     {
-        unsafe::set_next(pivot_of(x.base()), y.base());
+        detail::set_next(pivot_of(x.base()), y.base());
     }
 };
 
-} // namespace unsafe
+} // namespace detail
         
 /*************************************************************************************************/
 
@@ -741,7 +741,7 @@ template <typename T>
 forest<T>::forest() :
         size_m(0)
 {
-    unsafe::set_next(end(), root());
+    detail::set_next(end(), root());
 }
 
 /*************************************************************************************************/
@@ -750,7 +750,7 @@ template <typename T>
 forest<T>::forest(const forest& x) :
         size_m(0)
 {
-    unsafe::set_next(end(), root());
+    detail::set_next(end(), root());
     
     insert(begin(), const_child_iterator(x.begin()), const_child_iterator(x.end()));
 }
@@ -847,12 +847,12 @@ typename forest<T>::iterator forest<T>::erase(const iterator& position)
     
     if (has_children(position))
     {
-        unsafe::set_next(leading_prior, leading_next);
-        unsafe::set_next(trailing_prior, trailing_next);
+        detail::set_next(leading_prior, leading_next);
+        detail::set_next(trailing_prior, trailing_next);
     }
     else
     {
-        unsafe::set_next(leading_prior, trailing_next);
+        detail::set_next(leading_prior, trailing_next);
     }
     
     delete position.node_m;
@@ -916,10 +916,10 @@ typename forest<T>::iterator forest<T>::splice(iterator pos, forest<T>& x, child
     
     iterator back(boost::prior(last.base()));
     
-    unsafe::set_next(boost::prior(first), last);
+    detail::set_next(boost::prior(first), last);
     
-    unsafe::set_next(boost::prior(pos), first.base());
-    unsafe::set_next(back, pos);
+    detail::set_next(boost::prior(pos), first.base());
+    detail::set_next(back, pos);
     
     return first.base();
 }
@@ -950,8 +950,8 @@ void forest<T>::reverse(child_iterator first, child_iterator last)
 {
     iterator prior(first.base());
     --prior;
-    first = unsafe::reverse_nodes(first, last);
-    unsafe::set_next(prior, first.base());
+    first = detail::reverse_nodes(first, last);
+    detail::set_next(prior, first.base());
 }
 
 /*************************************************************************************************/
@@ -1008,7 +1008,7 @@ child_iterator<I> child_end(const I& x)
 */
 
 /*!
-\relates adobe::forest
+\relates boost::forest::forest
 
 \param x the FullorderRange to which the filter will be applied
 \param p the predicate to be applied to the FullorderIterator
@@ -1028,7 +1028,7 @@ filter_fullorder_range(R& x, P p)
 }
 
 /*!
-\relates adobe::forest
+\relates boost::forest::forest
 
 \param x the const FullorderRange to which the filter will be applied
 \param p the predicate to be applied to value_type(R)
@@ -1061,7 +1061,7 @@ filter_fullorder_range(const R& x, P p)
 */
 
 /*!
-\relates adobe::forest
+\relates boost::forest::forest
 
 \param x the FullorderRange which will be reversed
 
@@ -1080,7 +1080,7 @@ inline std::pair<reverse_fullorder_iterator<typename boost::range_iterator<R>::t
 }
 
 /*!
-\relates adobe::forest
+\relates boost::forest::forest
 
 \param x the const FullorderRange which will be reversed
 
@@ -1102,7 +1102,7 @@ inline std::pair<reverse_fullorder_iterator<typename boost::range_const_iterator
 /*************************************************************************************************/
 
 /*!
-\relates adobe::forest
+\relates boost::forest::forest
 
 \param x the FullorderRange which will be made into a depth FullorderRange
 
@@ -1121,7 +1121,7 @@ inline std::pair<depth_fullorder_iterator<typename boost::range_iterator<R>::typ
 }
 
 /*!
-\relates adobe::forest
+\relates boost::forest::forest
 
 \param x the const FullorderRange which will be made into a const depth FullorderRange
 
@@ -1142,7 +1142,7 @@ inline std::pair<depth_fullorder_iterator<typename boost::range_const_iterator<R
 /*************************************************************************************************/
 
 /*!
-\relates adobe::forest
+\relates boost::forest::forest
 
 \param x the FullorderRange which will be made into a postorder range
 
@@ -1161,7 +1161,7 @@ inline std::pair<edge_iterator<typename boost::range_iterator<R>::type, forest_t
 }
 
 /*!
-\relates adobe::forest
+\relates boost::forest::forest
 
 \param x the const FullorderRange which will be made into a const postorder range
 
@@ -1182,7 +1182,7 @@ inline std::pair<edge_iterator<typename boost::range_const_iterator<R>::type, fo
 /*************************************************************************************************/
 
 /*!
-\relates adobe::forest
+\relates boost::forest::forest
 
 \param x the FullorderRange which will be made into a preorder range
 
@@ -1201,7 +1201,7 @@ inline std::pair<edge_iterator<typename boost::range_iterator<R>::type, forest_l
 }
 
 /*!
-\relates adobe::forest
+\relates boost::forest::forest
 
 \param x the const FullorderRange which will be made into a const preorder range
 
