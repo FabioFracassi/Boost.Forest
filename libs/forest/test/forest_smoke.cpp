@@ -3,7 +3,7 @@
 #include <new>
 #include <cassert>
 
-#include <adobe/algorithm/find.hpp> // Todo: Remove and use  boost equivalent
+#include <boost/range/algorithm/find.hpp>
 #include <boost/forest/forest.hpp>
 #include <boost/range.hpp>
 
@@ -54,7 +54,7 @@ int main()
     std::cout << "<- copy construction and reverse ->" << std::endl;
     
     forest f2(f);
-    iterator f2_grandmother(adobe::find(boost::forest::preorder_range(f2), "grandmother").base());
+    iterator f2_grandmother(boost::find(boost::forest::preorder_range(f2), "grandmother").base());
     f2.reverse(boost::forest::child_begin(f2_grandmother), boost::forest::child_end(f2_grandmother));
     
     output(boost::forest::depth_range(f2));
@@ -66,8 +66,8 @@ int main()
     std::cout << "<- node deletion ->" << std::endl;
     
     forest f3(f);
-    iterator f3_aunt(adobe::find(boost::forest::preorder_range(f3), "aunt").base());
-    iterator f3_uncle(adobe::find(boost::forest::preorder_range(f3), "uncle").base());
+    iterator f3_aunt(boost::find(boost::forest::preorder_range(f3), "aunt").base());
+    iterator f3_uncle(boost::find(boost::forest::preorder_range(f3), "uncle").base());
     f3.erase(boost::forest::leading_of(f3_aunt), ++(boost::forest::trailing_of(f3_uncle)));
 
     output(boost::forest::depth_range(f3));
@@ -76,7 +76,7 @@ int main()
 
     forest f4(f);
     forest f5(f);
-    iterator f4_aunt(adobe::find(boost::forest::preorder_range(f4), "aunt").base());
+    iterator f4_aunt(boost::find(boost::forest::preorder_range(f4), "aunt").base());
 
     std::cout << "Size of f4 pre-splice: " << static_cast<unsigned long>(f4.size()) << std::endl;
     std::cout << "Size of f5 pre-splice: " << static_cast<unsigned long>(f5.size()) << std::endl;
@@ -95,7 +95,7 @@ int main()
 
     forest f6(f);
     forest f7(f);
-    iterator f6_aunt(adobe::find(boost::forest::preorder_range(f6), "aunt").base());
+    iterator f6_aunt(boost::find(boost::forest::preorder_range(f6), "aunt").base());
 
     std::cout << "Size of f6 pre-splice: " << static_cast<unsigned long>(f6.size()) << std::endl;
     std::cout << "Size of f7 pre-splice: " << static_cast<unsigned long>(f7.size()) << std::endl;
