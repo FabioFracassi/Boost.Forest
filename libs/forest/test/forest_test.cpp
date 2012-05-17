@@ -1,10 +1,21 @@
+//-------------------------------------------------------------------------------------------------
+// Boost.Forest library
+//
+// Copyright 2012 Fabio Fracassi
+//
+// Distributed under the Boost Software License Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+//
+//-------------------------------------------------------------------------------------------------
+// Ported over from ASL during C++Now! Library in a week session with permission from Sean Parent
+//-------------------------------------------------------------------------------------------------
 /*
-	Copyright 2008 Adobe Systems Incorporated
-	Distributed under the MIT License (see accompanying file LICENSE_1_0_0.txt
-	or a copy at http://stlab.adobe.com/licenses.html)
-*/
-
-/*************************************************************************************************/
+ Copyright 2005-2008 Adobe Systems Incorporated
+ Distributed under the MIT License (see accompanying file LICENSE_1_0_0.txt
+ or a copy at http://stlab.adobe.com/licenses.html)
+ */
+//-------------------------------------------------------------------------------------------------
 
 #include <algorithm>
 
