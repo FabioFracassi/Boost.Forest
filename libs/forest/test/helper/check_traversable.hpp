@@ -27,7 +27,7 @@ namespace forest {
 namespace test {
 
 /*!
-\ingroup testing
+\ingroup boost_forest_testing
 */
 template <typename T>
 void check_traversable(const T& c)

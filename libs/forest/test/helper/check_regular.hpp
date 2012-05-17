@@ -24,7 +24,7 @@ namespace forest {
 namespace test {
 
 /*!
-\addtogroup testing
+\addtogroup boost_forest_testing
 @{
 */
 

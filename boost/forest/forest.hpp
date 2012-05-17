@@ -17,8 +17,8 @@
  */
 //-------------------------------------------------------------------------------------------------
 
-#ifndef ADOBE_FOREST_HPP
-#define ADOBE_FOREST_HPP
+#ifndef BOOST_FOREST_FOREST_HPP
+#define BOOST_FOREST_FOREST_HPP
 
 /*************************************************************************************************/
 
@@ -345,7 +345,7 @@ template <typename T> void swap(forest<T>&, forest<T>&);
 
 /*************************************************************************************************/
 
-#if !defined(ADOBE_NO_DOCUMENTATION)
+#if !defined(BOOST_FOREST_NO_DOCUMENTATION)
 namespace implementation {
 
 template <typename D> // derived class
@@ -582,7 +582,7 @@ public:
     typedef edge_iterator<iterator, forest_trailing_edge>       postorder_iterator;
     typedef edge_iterator<const_iterator, forest_trailing_edge> const_postorder_iterator;
     
-#if !defined(ADOBE_NO_DOCUMENTATION)
+#if !defined(BOOST_FOREST_NO_DOCUMENTATION)
     forest();
     ~forest() { clear(); }
 
@@ -654,7 +654,7 @@ public:
     void reverse(child_iterator first, child_iterator last);
     
 private:
-#if !defined(ADOBE_NO_DOCUMENTATION)
+#if !defined(BOOST_FOREST_NO_DOCUMENTATION)
 
     friend class implementation::forest_iterator<value_type>;
     friend class implementation::forest_const_iterator<value_type>;
@@ -746,7 +746,7 @@ struct set_next_fn<child_iterator<I> >
         
 /*************************************************************************************************/
 
-#if !defined(ADOBE_NO_DOCUMENTATION)
+#if !defined(BOOST_FOREST_NO_DOCUMENTATION)
 
 template <typename T>
 forest<T>::forest() :
@@ -1237,6 +1237,4 @@ inline std::pair<edge_iterator<typename boost::range_const_iterator<R>::type, fo
 
 /*************************************************************************************************/
 
-#endif
-        
-/*************************************************************************************************/
+#endif // BOOST_FOREST_FOREST_HPP

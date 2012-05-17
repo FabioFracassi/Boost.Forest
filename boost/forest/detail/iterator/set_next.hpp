@@ -17,20 +17,18 @@
 */
 //-------------------------------------------------------------------------------------------------
 
-#ifndef ADOBE_ITERATOR_SET_NEXT_HPP
-#define ADOBE_ITERATOR_SET_NEXT_HPP
+#ifndef BOOST_FOREST_DETAIL_ITERATOR_SET_NEXT_HPP
+#define BOOST_FOREST_DETAIL_ITERATOR_SET_NEXT_HPP
 
 #include <boost/next_prior.hpp>
 
 /*************************************************************************************************/
 
 namespace boost {
-
 namespace forest {
-
 namespace detail {
 
-/*! \addtogroup adobe_iterator
+/*! \addtogroup boost_forest_detail_iterator
 @{
 */
 
@@ -89,9 +87,9 @@ inline void skip_node(I location)
 
 } // namespace detail
 } // namespace forest
-} // namespace adobe
+} // namespace boost
 
 /*************************************************************************************************/
 
-// ADOBE_ITERATOR_SET_NEXT_HPP
-#endif
+#endif // BOOST_FOREST_DETAIL_ITERATOR_SET_NEXT_HPP
+

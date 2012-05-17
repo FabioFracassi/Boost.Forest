@@ -11,14 +11,14 @@
 // Ported over from ASL during C++Now! Library in a week session with permission from Sean Parent
 //-------------------------------------------------------------------------------------------------
 /*
-#ifndef ADOBE_ALGORITHM_REVERSE_HPP
-#define ADOBE_ALGORITHM_REVERSE_HPP
  Copyright 2005-2008 Adobe Systems Incorporated
  Distributed under the MIT License (see accompanying file LICENSE_1_0_0.txt
  or a copy at http://stlab.adobe.com/licenses.html)
  */
 //-------------------------------------------------------------------------------------------------
 
+#ifndef BOOST_FOREST_ALGORITHM_REVERSE_HPP
+#define BOOST_FOREST_ALGORITHM_REVERSE_HPP
 
 #include <boost/range/begin.hpp>
 #include <boost/range/end.hpp>
@@ -37,7 +37,7 @@ namespace forest {
 /*************************************************************************************************/
 /*!
 \defgroup reverse reverse
-\ingroup mutating_algorithm
+\ingroup boost_forest_detail_mutating_algorithm
 
 \see
     - STL documentation for \ref stldoc_reverse
@@ -50,7 +50,7 @@ namespace detail {
 /*************************************************************************************************/
 
 /*!
-\ingroup node_algorithm
+\ingroup boost_forest_detail_node_algorithm
 */
 template <typename I> // I models NodeIterator
 I reverse_append(I first, I last, I result)
@@ -66,7 +66,7 @@ I reverse_append(I first, I last, I result)
 }
 
 /*!
-\ingroup node_algorithm
+\ingroup boost_forest_detail_node_algorithm
 */
 template <typename R, // R models NodeRange
           typename I> // I models NodeIterator
@@ -76,7 +76,7 @@ inline I reverse_append(R& range, I result)
 }
 
 /*!
-\ingroup node_algorithm
+\ingroup boost_forest_detail_node_algorithm
 */
 template <typename I> // I models NodeIterator
 inline I reverse_nodes(I first, I last)
@@ -85,7 +85,7 @@ inline I reverse_nodes(I first, I last)
 }
 
 /*!
-\ingroup node_algorithm
+\ingroup boost_forest_detail_node_algorithm
 */
 template <typename R> // R models NodeRange
 inline typename boost::range_iterator<R>::type reverse_nodes(R& range)
@@ -99,7 +99,7 @@ inline typename boost::range_iterator<R>::type reverse_nodes(R& range)
 
 /*************************************************************************************************/
 /*!
-    \ingroup reverse
+    \ingroup boost_forest_detail_reverse
 
     \brief reverse implementation
 */
@@ -110,7 +110,7 @@ inline void reverse(BidirectionalRange& range)
 }
 
 /*!
-    \ingroup reverse
+    \ingroup boost_forest_detail_reverse
 
     \brief reverse implementation
 */
@@ -121,7 +121,7 @@ inline void reverse_copy(BidirectionalRange& range, OutputIterator result)
 }
 
 /*!
-    \ingroup reverse
+    \ingroup boost_forest_detail_reverse
 
     \brief reverse implementation
 */
@@ -133,7 +133,7 @@ inline void reverse_copy(const BidirectionalRange& range, OutputIterator result)
 
 /*************************************************************************************************/
 /*!
-    \ingroup reverse
+    \ingroup boost_forest_detail_reverse
 
     \brief reverse implementation
 */
