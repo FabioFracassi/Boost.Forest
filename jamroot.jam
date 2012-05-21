@@ -9,7 +9,9 @@
 #
 #--------------------------------------------------------------------------------------------------
 #  Ported over from ASL during C++Now! Library in a week session with permission from Sean Parent
+#    find original ASL at http://stlab.adobe.com/
 #--------------------------------------------------------------------------------------------------
+
 import modules ;
 
 local boost = [ modules.peek : BOOST ] ;
